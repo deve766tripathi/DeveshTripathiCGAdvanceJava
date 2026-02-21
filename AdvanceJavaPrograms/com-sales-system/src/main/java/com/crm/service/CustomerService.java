@@ -1,6 +1,7 @@
 package com.crm.service;
 
 import com.crm.entity.Customer;
+import com.crm.entity.Address;
 import jakarta.persistence.*;
 
 public class CustomerService {
@@ -27,6 +28,30 @@ public class CustomerService {
 
             tx.commit();
             System.out.println("Customer Registered!");
+
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        }
+    }
+    public void addAddressToCustomer(Long customerId, Address address) {
+
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+
+            Customer customer = em.find(Customer.class, customerId);
+
+            if (customer != null) {
+                customer.setAddress(address);
+                em.merge(customer);
+                System.out.println("✅ Address added to customer");
+            } else {
+                System.out.println("❌ Customer not found");
+            }
+
+            tx.commit();
 
         } catch (Exception e) {
             tx.rollback();

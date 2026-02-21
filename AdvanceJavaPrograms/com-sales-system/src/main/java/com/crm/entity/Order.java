@@ -20,4 +20,11 @@ public class Order {
 
     @ManyToMany
     private List<Product> products = new ArrayList<>();
+    public void setCustomer(Customer customer) { this.customer = customer; }
+
+    public void setProducts(List<Product> products) { this.products = products; }
+
+    public void setTotalAmount(double totalAmount) { this.totalAmount = totalAmount; }
+
+    public void setOrderDate(LocalDate orderDate) { this.orderDate = orderDate; }
 }

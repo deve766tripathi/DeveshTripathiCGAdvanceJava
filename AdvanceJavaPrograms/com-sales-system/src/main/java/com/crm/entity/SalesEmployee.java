@@ -15,4 +15,11 @@ public class SalesEmployee {
 
     @OneToMany(mappedBy = "employee")
     private List<Lead> leads = new ArrayList<>();
+    public Long getId() { return id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getDepartment() { return department; }
+    public void setDepartment(String department) { this.department = department; }
 }
